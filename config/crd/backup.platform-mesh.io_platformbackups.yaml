@@ -73,11 +73,15 @@ spec:
                     - enabled
                     type: object
                 type: object
+                x-kubernetes-validations:
+                - message: at least one component must be enabled
+                  rule: self.etcd.enabled || self.cnpg.enabled || self.velero.enabled
               storage:
                 properties:
                   s3:
                     properties:
                       bucket:
+                        minLength: 1
                         type: string
                       credentialsRef:
                         description: |-
@@ -96,6 +100,7 @@ spec:
                         type: object
                         x-kubernetes-map-type: atomic
                       endpoint:
+                        minLength: 1
                         type: string
                       region:
                         type: string

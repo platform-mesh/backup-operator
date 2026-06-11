@@ -42,12 +42,15 @@ type StorageSpec struct {
 }
 
 type S3StorageSpec struct {
-	Endpoint       string                    `json:"endpoint"`
-	Bucket         string                    `json:"bucket"`
-	Region         string                    `json:"region,omitempty"`
+	// +kubebuilder:validation:MinLength=1
+	Endpoint string `json:"endpoint"`
+	// +kubebuilder:validation:MinLength=1
+	Bucket         string                      `json:"bucket"`
+	Region         string                      `json:"region,omitempty"`
 	CredentialsRef corev1.LocalObjectReference `json:"credentialsRef"`
 }
 
+// +kubebuilder:validation:XValidation:rule="self.etcd.enabled || self.cnpg.enabled || self.velero.enabled",message="at least one component must be enabled"
 type ComponentsSpec struct {
 	Etcd   ComponentToggle `json:"etcd,omitempty"`
 	CNPG   ComponentToggle `json:"cnpg,omitempty"`
