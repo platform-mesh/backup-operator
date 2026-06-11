@@ -60,6 +60,7 @@ spec:
                       s3:
                         properties:
                           bucket:
+                            minLength: 1
                             type: string
                           credentialsRef:
                             description: |-
@@ -78,6 +79,7 @@ spec:
                             type: object
                             x-kubernetes-map-type: atomic
                           endpoint:
+                            minLength: 1
                             type: string
                           region:
                             type: string

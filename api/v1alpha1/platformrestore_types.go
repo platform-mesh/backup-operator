@@ -29,7 +29,7 @@ const (
 	RestorePhaseRestoringVelero    RestorePhase = "RestoringVelero"
 	RestorePhaseRepairing          RestorePhase = "Repairing"
 	RestorePhaseSucceeded          RestorePhase = "Succeeded"
-	RestoreRestorePhaseFailed      RestorePhase = "Failed"
+	RestorePhaseFailed             RestorePhase = "Failed"
 )
 
 // +kubebuilder:validation:Enum=Strict
