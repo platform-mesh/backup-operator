@@ -44,7 +44,9 @@ func RunController(_ *cobra.Command, _ []string) { // coverage-ignore
 	ctx, _, shutdown := platformmeshcontext.StartContext(log, operatorCfg, defaultCfg.ShutdownTimeout)
 	defer shutdown()
 
-	provider, err := pathaware.New(ctrl.GetConfigOrDie(), operatorCfg.Kcp.ApiExportEndpointSliceName, apiexport.Options{
+	restCfg := ctrl.GetConfigOrDie()
+
+	provider, err := pathaware.New(restCfg, operatorCfg.Kcp.ApiExportEndpointSliceName, apiexport.Options{
 		Log:    &ctrl.Log,
 		Scheme: scheme,
 	})
@@ -52,7 +54,7 @@ func RunController(_ *cobra.Command, _ []string) { // coverage-ignore
 		log.Fatal().Err(err).Msg("creating APIExport provider")
 	}
 
-	mgr, err := mcmanager.New(ctrl.GetConfigOrDie(), provider, mcmanager.Options{
+	mgr, err := mcmanager.New(restCfg, provider, mcmanager.Options{
 		Scheme: scheme,
 		Metrics: metricsserver.Options{
 			BindAddress:   defaultCfg.Metrics.BindAddress,
