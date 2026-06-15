@@ -8,7 +8,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/platform-mesh/backup-operator/pkg/topology"
+	"github.com/platform-mesh/backup-operator/internal/topology"
 )
 
 const configMapName = "backup-topology-schemas"

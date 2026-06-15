@@ -15,7 +15,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"
 
-	"github.com/platform-mesh/backup-operator/pkg/topology/projector"
+	"github.com/platform-mesh/backup-operator/internal/topology/projector"
 )
 
 func setupEnvtest(t *testing.T) (client.Client, *rest.Config, func()) {
