@@ -16,7 +16,7 @@ RUN go mod download
 COPY main.go main.go
 COPY cmd/ cmd/
 COPY api/ api/
-COPY internal/ internal/
+COPY pkg/ pkg/
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${TARGETARCH} go build -ldflags '-w -s' -o manager main.go

@@ -9,4 +9,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: backup-operator
-    namespace: platform-mesh-system
+    namespace: {{ .Release.Namespace }}

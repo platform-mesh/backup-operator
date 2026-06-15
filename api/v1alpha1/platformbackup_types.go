@@ -21,6 +21,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// +kubebuilder:validation:Enum=Pending;Capturing;WritingManifest;Succeeded;Failed
 type BackupPhase string
 
 const (
@@ -52,12 +53,23 @@ type S3StorageSpec struct {
 
 // +kubebuilder:validation:XValidation:rule="self.etcd.enabled || self.cnpg.enabled || self.velero.enabled",message="at least one component must be enabled"
 type ComponentsSpec struct {
-	Etcd   ComponentToggle `json:"etcd,omitempty"`
-	CNPG   ComponentToggle `json:"cnpg,omitempty"`
-	Velero ComponentToggle `json:"velero,omitempty"`
+	Etcd   EtcdSpec   `json:"etcd,omitempty"`
+	CNPG   CNPGSpec   `json:"cnpg,omitempty"`
+	Velero VeleroSpec `json:"velero,omitempty"`
 }
 
-type ComponentToggle struct {
+type EtcdSpec struct {
+	// +kubebuilder:default=true
+	Enabled bool `json:"enabled"`
+}
+
+type CNPGSpec struct {
+	// +kubebuilder:default=true
+	Enabled bool `json:"enabled"`
+}
+
+type VeleroSpec struct {
+	// +kubebuilder:default=true
 	Enabled bool `json:"enabled"`
 }
 

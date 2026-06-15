@@ -169,6 +169,14 @@ spec:
                 format: int64
                 type: integer
               phase:
+                enum:
+                - ValidatingTopology
+                - RestoringEtcd
+                - RestoringCNPG
+                - RestoringVelero
+                - Repairing
+                - Succeeded
+                - Failed
                 type: string
               repair:
                 properties:

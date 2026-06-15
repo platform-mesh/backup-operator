@@ -29,7 +29,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	mcmanager "sigs.k8s.io/multicluster-runtime/pkg/manager"
 
-	"github.com/platform-mesh/backup-operator/internal/controller"
+	"github.com/platform-mesh/backup-operator/pkg/controller"
 )
 
 var operatorCmd = &cobra.Command{
