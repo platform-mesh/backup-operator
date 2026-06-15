@@ -2,7 +2,6 @@ package projector_test
 
 import (
 	"context"
-	"os"
 	"path/filepath"
 	"testing"
 
@@ -25,13 +24,8 @@ func setupEnvtest(t *testing.T) (client.Client, *rest.Config, func()) {
 	scheme := runtime.NewScheme()
 	require.NoError(t, clientgoscheme.AddToScheme(scheme))
 
-	assetsDir := os.Getenv("KUBEBUILDER_ASSETS")
-	if assetsDir == "" {
-		assetsDir = filepath.Join("..", "..", "..", "bin", "k8s")
-	}
-
 	env := &envtest.Environment{
-		BinaryAssetsDirectory: assetsDir,
+		BinaryAssetsDirectory: filepath.Join("..", "..", "..", "bin", "k8s"),
 	}
 	cfg, err := env.Start()
 	require.NoError(t, err, "starting envtest")
